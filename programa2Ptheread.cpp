@@ -91,12 +91,8 @@ void *ejecutarE(void *arg) {
     pthread_exit(NULL);
 }
 
-#include <time.h>   // Añadir esta librería
-
 int main() {
-    struct timespec inicio, fin;
-    double tiempoTotal;
-    clock_gettime(CLOCK_MONOTONIC, &inicio);
+    
     srand(time(NULL));
 
     // Ejecutar A, B y C en paralelo
@@ -112,10 +108,7 @@ int main() {
     pthread_create(&hiloE, NULL, ejecutarE, NULL);
     pthread_join(hiloE, NULL);
     // funcionE();
-    clock_gettime(CLOCK_MONOTONIC, &fin);
-
-    tiempoTotal = (fin.tv_sec - inicio.tv_sec) + (fin.tv_nsec - inicio.tv_nsec) / 1e9;
-    printf("Tiempo de ejecución: %f segundos\n", tiempoTotal);
+    
 
     printf("Fin de la ejecución\n");
     return 0;
