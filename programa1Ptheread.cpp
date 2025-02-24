@@ -51,7 +51,7 @@ void funcionD() {
 // Función E: Se ejecuta después de A y D
 void funcionE() {
     pthread_join(hiloA, NULL);
-    pthread_join(hiloD, NULL);
+    // pthread_join(hiloD, NULL);
 
     // Calcula cuánto tiempo esperó E
     time_t finE = time(NULL);
@@ -79,15 +79,15 @@ void *ejecutarC(void *arg) {
     pthread_exit(NULL);
 }
 
-void *ejecutarD(void *arg) {
-    funcionD();
-    pthread_exit(NULL);
-}
+// void *ejecutarD(void *arg) {
+//     funcionD();
+//     pthread_exit(NULL);
+// }
 
-void *ejecutarE(void *arg) {
-    funcionE();
-    pthread_exit(NULL);
-}
+// void *ejecutarE(void *arg) {
+//     funcionE();
+//     pthread_exit(NULL);
+// }
 
 int main() {
     srand(time(NULL));
@@ -102,11 +102,12 @@ int main() {
     pthread_create(&hiloC, NULL, ejecutarC, NULL);
 
     // Ejecutar D y E en hilos
-    pthread_create(&hiloD, NULL, ejecutarD, NULL);
-    pthread_create(&hiloE, NULL, ejecutarE, NULL);
-
-    // Esperar a que termine E
-    pthread_join(hiloE, NULL);
+    // pthread_create(&hiloD, NULL, ejecutarD, NULL);
+    // pthread_create(&hiloE, NULL, ejecutarE, NULL);
+    funcionD();
+    funcionE();
+    // // Esperar a que termine E
+    // pthread_join(hiloE, NULL);
 
     printf("Fin de la ejecución\n");
     return 0;
