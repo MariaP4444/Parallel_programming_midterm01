@@ -109,9 +109,9 @@ int main() {
     pthread_create(&hiloF, NULL, ejecutarF, NULL);
 
     // Ejecutar E (depende de D y F)
-    // pthread_create(&hiloE, NULL, ejecutarE, NULL);
-    // pthread_join(hiloE, NULL);
-    funcionE();
+    pthread_create(&hiloE, NULL, ejecutarE, NULL);
+    pthread_join(hiloE, NULL);
+    // funcionE();
     clock_gettime(CLOCK_MONOTONIC, &fin);
 
     tiempoTotal = (fin.tv_sec - inicio.tv_sec) + (fin.tv_nsec - inicio.tv_nsec) / 1e9;
